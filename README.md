@@ -4,22 +4,22 @@
 [![Dev Dependency Status](https://david-dm.org/zekchan/react-ssr-error-boundary/dev-status.svg)](https://david-dm.org/zekchan/react-ssr-error-boundary?type=dev)
 
 React 16 introduced new `componentDidCatch` lifecycle method, but it is not working when you render page on server using `renderToString`.
-If you want just render fallback when your component throw error you can use `react-ssr-error-boundary`.
+If you want just render fallback when your component throw error you can use `react-ssr-error-fallback`.
 
 ## Installation:
-Add the latest version of `react-ssr-error-boundary` to your package.json:
+Add the latest version of `react-ssr-error-fallback` to your package.json:
 ```
-npm install react-ssr-error-boundary
+npm install react-ssr-error-fallback
 ```
 or
 ```
-yarn add react-ssr-error-boundary
+yarn add react-ssr-error-fallback
 ```
 
 ## Usage:
 Code below will render `<div>Error Fallback</div>` on server if ProblemComponent rendering fails:
 ```javascript
-import ErrorFallBack from 'react-ssr-error-boundary'
+import ErrorFallBack from 'react-ssr-error-fallback'
 
 
 function App() {
@@ -31,7 +31,7 @@ function App() {
 If yours ProblemComponent depends on context (your are using Redux for example), you should create your own ErrorFallBack component by providing contextTypes:
 
 ```javascript
-import { withContext } from 'react-ssr-error-boundary'
+import { withContext } from 'react-ssr-error-fallback'
 const ErrorFallBack = withContext({ store: PropTypes.object })
 
 function App() {
