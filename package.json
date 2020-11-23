@@ -1,6 +1,6 @@
 {
   "name": "react-ssr-error-fallback",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "React renderToString error boundary fallback with no extra 'div' element",
   "main": "index.js",
   "repository": "https://github.com/w01fgang/react-ssr-error-boundary",
@@ -19,8 +19,7 @@
     "react-dom": "^16"
   },
   "files": [
-    "README.md",
-    "src/index.js",
+    "server.js",
     "index.js"
   ],
   "devDependencies": {
