@@ -31,7 +31,7 @@ describe('Server side', () => {
       <GoodComponent />
     </ErrorFallback>)
 
-    expect(html).toBe('<div><div>No errors!</div></div>')
+    expect(html).toBe('<div>No errors!</div>')
   })
 
   it('Renders fallBack component if children rendering throws error', () => {
@@ -77,7 +77,7 @@ describe('Server side', () => {
       </ContextProvider>
     )
 
-    expect(html).toBe('<div><div>No errors! Context variable</div></div>')
+    expect(html).toBe('<div>No errors! Context variable</div>')
   })
 
   it('Renders child component with new context dependencies', () => {
@@ -107,7 +107,7 @@ describe('Server side', () => {
       </ContextProvider>
     )
 
-    expect(html).toBe('<div><div>No errors! Context variable</div></div>')
+    expect(html).toBe('<div>No errors! Context variable</div>')
     clearContexts()
   })
 
@@ -154,7 +154,7 @@ describe('Server side', () => {
       </ContextProvider>
     )
 
-    expect(html).toBe('<div><div>No errors! Context variable1 Context variable2 Context variable3</div></div>')
+    expect(html).toBe('<div>No errors! Context variable1 Context variable2 Context variable3</div>')
     clearContexts()
   })
 
@@ -199,5 +199,17 @@ describe('Server side', () => {
     const {createContext} = React
     shim()
     expect(React.createContext).toBe(createContext)
+  })
+
+  it('Renders child component with script tag', () => {
+    function GoodComponent() {
+      return <script dangerouslySetInnerHTML={{ __html: "window.close();" }} />
+    }
+
+    const html = renderToStaticMarkup(<ErrorFallback fallBack={() => <FallBack />}>
+      <GoodComponent />
+    </ErrorFallback>)
+
+    expect(html).toBe('<script>window.close();</script>')
   })
 })
