@@ -1,11 +1,21 @@
-import React, { Component } from 'react'
+// @flow
+import React, { PureComponent } from 'react'
 
 const server = typeof window === 'undefined' && require('./server')
 
-export function withContext (contextTypes = {}) {
+type Props = {|
+  +children: React$Node,
+    +fallBack: () => React$Node,
+|};
+
+type State = {|
+  +hasError: boolean,
+|};
+
+export function withContext (contextTypes: $FlowFixMe = {}) {
   const ProvideContext = server && server._makeProvider(contextTypes)
 
-  class ServerBoundary extends Component {
+  class ServerBoundary extends PureComponent<Props, State> {
     static defaultProps = {
       fallBack: () => null
     }

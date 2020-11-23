@@ -1,5 +1,7 @@
+// @flow
 import React, { Component } from 'react'
 import { renderToStaticMarkup } from 'react-dom/server'
+import parse from 'html-react-parser'
 
 // Array to store React contexts
 const contexts = []
@@ -61,8 +63,7 @@ export function _render (self, ProvideContext) {
     const elementWithProviders = stackProviders(element, values)
 
     try {
-      const __html = renderToStaticMarkup(elementWithProviders)
-      return <div dangerouslySetInnerHTML={{__html}} />
+      return parse(renderToStaticMarkup(elementWithProviders))
     } catch (e) {
       return <div>{self.props.fallBack()}</div>
     }
