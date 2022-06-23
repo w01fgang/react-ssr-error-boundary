@@ -51,6 +51,6 @@
     "collectCoverage": true
   },
   "dependencies": {
-    "html-react-parser": "^0.14.2"
+    "html-react-parser": "^1.4.14"
   }
 }
